@@ -113,6 +113,7 @@ source $ZSH/oh-my-zsh.sh
 alias icat="kitten icat"
 alias hpc="ssh vsc47981@login.hpc.ugent.be"
 alias bluej="open -a 'BlueJ'"
+alias greenfoot="open -a 'Greenfoot'"
 alias llama="ollama run llama3.2"
 
 
