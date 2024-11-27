@@ -5,6 +5,17 @@ version = 3
   alignment = 'left'
 
   [[blocks.segments]]
+    type = 'text'
+    style = 'plain'
+    foreground_templates = [
+      "{{if gt .Code 0}}red{{end}}",
+      "{{if eq .Code 0}}magenta{{end}}",
+    ]
+    background = 'transparent'
+    template = '❯ '
+
+
+  [[blocks.segments]]
     template = '{{ .Path }} '
     foreground = '#56B6C2'
     type = 'path'
@@ -26,13 +37,4 @@ version = 3
       commit_icon = '@'
       fetch_status = true
 
-  [[blocks.segments]]
-    type = 'text'
-    style = 'plain'
-    foreground_templates = [
-      "{{if gt .Code 0}}red{{end}}",
-      "{{if eq .Code 0}}magenta{{end}}",
-    ]
-    background = 'transparent'
-    template = '❯ '
 
