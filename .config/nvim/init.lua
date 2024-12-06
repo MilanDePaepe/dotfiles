@@ -63,6 +63,7 @@ vim.opt.splitbelow = true
 vim.opt.list = true
 vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
 
 -- Preview substitutions live, as you type!
 vim.opt.inccommand = "split"
@@ -109,7 +110,9 @@ vim.keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right win
 vim.keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
 vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
 
-vim.keymap.set("n", "<space>fb", ":Telescope file_browser path=%:p:h select_buffer=true<CR>")
+-- Leader + e to open file explore
+vim.keymap.set("n", "<leader>e", ":Ex<CR>")
+
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 
@@ -149,7 +152,7 @@ vim.opt.rtp:prepend(lazypath)
 -- NOTE: Here is where you install your plugins.
 require("lazy").setup({
 	-- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
-	"tpope/vim-sleuth", -- Detect tabstop and shiftwidth automatically
+	-- "tpope/vim-sleuth", -- Detect tabstop and shiftwidth automatically
 
 	-- NOTE: Plugins can also be added by using a table,
 	-- with the first argument being the link and the following
@@ -175,10 +178,6 @@ require("lazy").setup({
 		},
 	},
 	{
-		"nvim-telescope/telescope-file-browser.nvim",
-		dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
-	},
-	{
 		"nvzone/showkeys",
 		cmd = "ShowkeysToggle",
 		opts = {
@@ -188,14 +187,29 @@ require("lazy").setup({
 		},
 	},
 	{
-		"thePrimeagen/vim-be-good",
-		cmd = "VimBeGood",
-		config = function()
-			require("VimBeGood").setup({})
-		end,
+		"mfussenegger/nvim-jdtls",
 	},
 	{
-		"nvim-java/nvim-java",
+		"sphamba/smear-cursor.nvim",
+
+		opts = {
+			-- Smear cursor color. Defaults to Cursor GUI color if not set.
+			-- Set to "none" to match the text color at the target cursor position.
+			cursor_color = "#ffa500",
+
+			-- Background color. Defaults to Normal GUI background color if not set.
+			normal_bg = "#282828",
+
+			-- Smear cursor when switching buffers or windows.
+			smear_between_buffers = true,
+
+			-- Smear cursor when moving within line or to neighbor lines.
+			smear_between_neighbor_lines = true,
+
+			-- Set to `true` if your font supports legacy computing symbols (block unicode symbols).
+			-- Smears will blend better on all backgrounds.
+			legacy_computing_symbols_support = false,
+		},
 	},
 	{
 		"MeanderingProgrammer/render-markdown.nvim",
@@ -270,6 +284,7 @@ require("lazy").setup({
 				{ "<leader>w", group = "[W]orkspace" },
 				{ "<leader>t", group = "[T]oggle" },
 				{ "<leader>h", group = "Git [H]unk", mode = { "n", "v" } },
+				{ "<leader>e", group = "Open [e]xplore" },
 			},
 		},
 	},
@@ -400,7 +415,10 @@ require("lazy").setup({
 			},
 		},
 	},
-	{ "Bilal2453/luvit-meta", lazy = true },
+	{
+		"Bilal2453/luvit-meta",
+		lazy = true,
+	},
 	{
 		-- Main LSP Configuration
 		"neovim/nvim-lspconfig",
@@ -731,7 +749,7 @@ require("lazy").setup({
 					--  This will auto-import if your LSP supports it.
 					--  This will expand snippets if the LSP sent a snippet.
 					-- ["<C-y>"] = cmp.mapping.confirm({ select = true }),
-					["<Tab>"] = cmp.mapping.confirm({ select = true }),
+					["<C-y>"] = cmp.mapping.confirm({ select = true }),
 
 					-- If you prefer more traditional completion keymaps,
 					-- you can uncomment the following lines
@@ -861,6 +879,7 @@ require("lazy").setup({
 				"query",
 				"vim",
 				"vimdoc",
+				"java",
 			},
 			-- Autoinstall languages that are not installed
 			auto_install = true,
