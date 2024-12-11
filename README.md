@@ -3,12 +3,14 @@
 ## Dependencies
 
 ### stow
-```
+
+```zsh
 brew install stow
 ```
 
 
 ## Intallation
+
 ### Copy dotfiles
 
 Clone this repo
@@ -23,7 +25,7 @@ Go to the dotfiles dir and create the symlinks.
 Make shure there are no clonflicting files/dirs in the root dir
 by renaming or deleting the origonal files.
 
-```
+```zsh
 cd dotfiles
 stow .
 ```
