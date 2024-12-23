@@ -36,3 +36,6 @@ vim.keymap.set("n", "<leader>y", ":%y+<CR>")
 
 -- '-' to open oil
 vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+
+-- Open floating terminal
+vim.keymap.set("n", "<leader>to", "<CMD>Floaterminal<CR>", { desc = "Open floating terminal" })
