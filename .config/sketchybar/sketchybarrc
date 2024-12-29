@@ -40,10 +40,21 @@ sketchybar --default icon.font="JetBrainsMono Nerd Font Mono:Bold:17.0"  \
 # Let's add some mission control spaces:
 # https://felixkratz.github.io/SketchyBar/config/components#space----associate-mission-control-spaces-with-an-item
 # to indicate active and available mission control spaces.
-#
+
 
 #Left side
+source "$ITEM_DIR/apple.sh"
 source "$ITEM_DIR/front_app.sh"
+
+
+# export EMPTY_WORKSPACES
+# export FOCUSED_WORKSPACE
+# source "$ITEM_DIR/space.sh"
+
+
+# source "$ITEM_DIR/media.sh"
+source "$ITEM_DIR/media_title.sh"
+source "$ITEM_DIR/media_artist.sh"
 
 # Right side
 source "$ITEM_DIR/calendar.sh"
