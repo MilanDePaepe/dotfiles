@@ -1,0 +1,5 @@
+font-family = JetBrainsMono Nerd Font Mono
+font-size = 18
+
+macos-titlebar-style = hidden
+confirm-close-surface = false
