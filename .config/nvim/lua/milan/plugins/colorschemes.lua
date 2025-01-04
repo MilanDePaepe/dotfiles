@@ -17,5 +17,6 @@ return {
 			vim.cmd.hi("Comment gui=none")
 		end,
 	},
+	{ "ficcdaf/ashen.nvim" },
 	{ "shaunsingh/nord.nvim" },
 }
