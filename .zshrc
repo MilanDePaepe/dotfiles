@@ -115,7 +115,7 @@ alias hpc="ssh vsc47981@login.hpc.ugent.be"
 alias bluej="open -a 'BlueJ'"
 alias greenfoot="open -a 'Greenfoot'"
 alias llama="ollama run llama3.2"
-
+alias sd="cd ~ && cd \$(find * -type d 2>/dev/null | fzf)"
 
 # /p10k
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
