@@ -5,7 +5,11 @@ return {
 		--
 		-- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
 		"folke/tokyonight.nvim",
+		dependencies = { "ficcdaf/ashen.nvim", "shaunsingh/nord.nvim", "comfysage/evergarden" },
 		priority = 1000, -- Make sure to load this before all the other start plugins.
+		opts = {
+			transparent = true,
+		},
 		init = function()
 			-- Load the colorscheme here.
 			-- Like many other themes, this one has different styles, and you could load
@@ -17,6 +21,4 @@ return {
 			vim.cmd.hi("Comment gui=none")
 		end,
 	},
-	{ "ficcdaf/ashen.nvim" },
-	{ "shaunsingh/nord.nvim" },
 }
