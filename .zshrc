@@ -10,12 +10,12 @@
 
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
-
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time Oh My Zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 #
+ZSH_THEME="robbyrussell"
  # ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Set list of themes to pick from when loading at random
@@ -121,7 +121,7 @@ alias sd="cd ~ && cd \$(find * -type d 2>/dev/null | fzf)"
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 # [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/conf.toml)"
+# eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/conf.toml)"
 
 # syntax highlighting terminal
 source /Users/milandepaepe/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
