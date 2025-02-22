@@ -6,7 +6,7 @@
 # fi
 
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH:$HOME/bin/randomBullshittery/scripts:./
 
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -112,10 +112,10 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias icat="kitten icat"
 alias hpc="ssh vsc47981@login.hpc.ugent.be"
-alias bluej="open -a 'BlueJ'"
-alias greenfoot="open -a 'Greenfoot'"
-alias llama="ollama run llama3.2"
 alias sd="cd ~ && cd \$(find * -type d 2>/dev/null | fzf)"
+alias zen="flatpak run app.zen_browser.zen 2>/dev/null &"
+alias intellij="/opt/idea-IU-243.24978.46/bin/idea 2>/dev/null &"
+alias scene-builder="flatpak run com.gluonhq.SceneBuilder 2>/dev/null &"
 
 # /p10k
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
@@ -123,8 +123,6 @@ alias sd="cd ~ && cd \$(find * -type d 2>/dev/null | fzf)"
 
 # eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/conf.toml)"
 
-# syntax highlighting terminal
-source /Users/milandepaepe/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 EDITOR=nvim
 function y() {
@@ -136,16 +134,5 @@ function y() {
 	rm -f -- "$tmp"
 }
 
-# Verwijder alle regels hieronder om terug te gaan naar de originele macOS
- BREW_BIN="/usr/local/bin/brew"
- if [ -f "/opt/homebrew/bin/brew" ]; then
-     BREW_BIN="/opt/homebrew/bin/brew"
- fi
-
- if type "${BREW_BIN}" &> /dev/null; then
-     export BREW_PREFIX="$("${BREW_BIN}" --prefix)"
-     for bindir in "${BREW_PREFIX}/opt/"*"/libexec/gnubin"; do export PATH=$bindir:$PATH; done
-     for bindir in "${BREW_PREFIX}/opt/"*"/bin"; do export PATH=$bindir:$PATH; done
-     for mandir in "${BREW_PREFIX}/opt/"*"/libexec/gnuman"; do export MANPATH=$mandir:$MANPATH; done
-     for mandir in "${BREW_PREFIX}/opt/"*"/share/man/man1"; do export MANPATH=$mandir:$MANPATH; done
- fi
+# syntax highlighting terminal
+source /home/milan/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
