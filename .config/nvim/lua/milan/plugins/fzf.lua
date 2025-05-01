@@ -8,6 +8,12 @@ return {
 		-- dependencies = { "echasnovski/mini.icons" },
 		opts = {},
 		config = function()
+			vim.keymap.set(
+				"n",
+				"<Leader>sf",
+				":lua require'fzf-lua'.files({ cwd = '~/'} )<CR>",
+				{ noremap = true, silent = true }
+			)
 			vim.keymap.set("n", "<leader>f", require("fzf-lua").files, { desc = "FZF Files" })
 			vim.keymap.set("n", "<leader>g", require("fzf-lua").live_grep, { desc = "FZF Grep" })
 			vim.keymap.set("n", "<leader><space>", require("fzf-lua").buffers, { desc = "FZF Buffers" })
