@@ -27,8 +27,8 @@ vim.keymap.set("n", "<down>", '<cmd>echo "Use j to move!!"<CR>')
 --
 --  See `:help wincmd` for a list of all window commands
 -- vim.keymap.set("n", "<C-h>", "<C-w><C-h>", { desc = "Move focus to the left window" })
--- vim.keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
--- vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
+vim.keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
+vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
 -- vim.keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right window" })
 
 vim.keymap.set("n", "<D-j>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
@@ -36,6 +36,7 @@ vim.keymap.set("n", "<D-k>", "<C-w><C-k>", { desc = "Move focus to the upper win
 
 -- Leader + e to open file explore
 vim.keymap.set("n", "<leader>y", ":%y+<CR>")
+vim.keymap.set("v", "<leader>y", ":y+<CR>")
 
 -- '-' to open oil
 vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
@@ -46,3 +47,19 @@ vim.keymap.set("n", "<leader>to", "<CMD>Floaterminal<CR>", { desc = "Open floati
 -- Easy move code around
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+
+vim.keymap.set("n", "<leader>rm", function()
+	-- Open a horizontal split and start a terminal
+	vim.cmd("below split")
+	vim.cmd("terminal")
+
+	-- Enter insert mode in the terminal
+	vim.fn.feedkeys("i")
+
+	-- Define the command to run your script
+	local script_command = "mvn exec:java" -- Replace with your script path
+
+	-- Send the command to the terminal
+	local enter = vim.api.nvim_replace_termcodes("<CR>", true, true, true)
+	vim.fn.feedkeys(script_command .. enter)
+end, { desc = "Open terminal split and run script" })
