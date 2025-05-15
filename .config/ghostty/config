@@ -1,5 +1,6 @@
 font-family = JetBrainsMono Nerd Font Mono
-font-size = 20
+font-size = 14
 macos-titlebar-style = hidden
+window-decoration = false
 confirm-close-surface = false
-background-opacity = 0.90
+background-opacity = 0.95
