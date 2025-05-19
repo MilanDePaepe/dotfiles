@@ -6,7 +6,7 @@
 # fi
 
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH:$HOME/bin/randomBullshittery/scripts:./
+export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH:$HOME/bin/randomBullshittery/scripts:./:/usr/share/derby/
 
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -15,8 +15,8 @@ export ZSH="$HOME/.oh-my-zsh"
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 #
-ZSH_THEME="robbyrussell"
- # ZSH_THEME="powerlevel10k/powerlevel10k"
+ZSH_THEME="amuse"
+# ZSH_THEME="robbyrussell"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -116,13 +116,6 @@ alias sd="cd ~ && cd \$(find * -type d 2>/dev/null | fzf)"
 alias zen="flatpak run app.zen_browser.zen 2>/dev/null &"
 alias intellij="/opt/idea-IU-243.24978.46/bin/idea 2>/dev/null &"
 alias scene-builder="flatpak run com.gluonhq.SceneBuilder 2>/dev/null &"
-
-# /p10k
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-# [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-# eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/conf.toml)"
-
 
 EDITOR=nvim
 function y() {
