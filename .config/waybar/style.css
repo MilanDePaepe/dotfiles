@@ -79,6 +79,10 @@ button:hover {
     margin: 0 4px;
 }
 
+#workspaces {
+	margin-left: 20px;
+}
+
 /* If workspaces is the leftmost module, omit left margin */
 /* .modules-left > widget:first-child > #workspaces { */
 /*     margin-left: 0; */
@@ -91,7 +95,7 @@ button:hover {
 
 #clock {
     background-color: #3c3836;
-	margin-right: 10px;
+	margin-right: 20px;
 }
 
 #battery {

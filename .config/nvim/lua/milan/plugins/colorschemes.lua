@@ -5,7 +5,14 @@ return {
 		--
 		-- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
 		"folke/tokyonight.nvim",
-		dependencies = { "ficcdaf/ashen.nvim", "shaunsingh/nord.nvim", "comfysage/evergarden", "drewxs/ash.nvim" },
+		dependencies = {
+			"ficcdaf/ashen.nvim",
+			"shaunsingh/nord.nvim",
+			"comfysage/evergarden",
+			"drewxs/ash.nvim",
+			"rose-pine/neovim",
+			"ellisonleao/gruvbox.nvim",
+		},
 		priority = 1000, -- Make sure to load this before all the other start plugins.
 		opts = {
 			transparent = true,
@@ -17,7 +24,8 @@ return {
 			-- vim.cmd.colorscheme("tokyonight-night")
 			-- vim.cmd.colorscheme("retrobox")
 			-- vim.cmd.colorscheme("ashen")
-			vim.cmd.colorscheme("evergarden")
+			-- vim.cmd.colorscheme("evergarden")
+			vim.cmd.colorscheme("rose-pine")
 
 			-- You can configure highlights by doing something like:
 			vim.cmd.hi("Comment gui=none")
