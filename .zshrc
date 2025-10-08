@@ -128,7 +128,9 @@ function y() {
 }
 
 # syntax highlighting terminal
-source /home/milan/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 export JAVA_HOME=/usr/lib/jvm/java-21-openjdk
 export PATH=$JAVA_HOME/bin:$PATH
+
+[ -f "/Users/milandepaepe/.ghcup/env" ] && . "/Users/milandepaepe/.ghcup/env" # ghcup-env
