@@ -120,7 +120,7 @@
                         "title": "Change right_shift + left_shift to caps_lock"
                     },
                     {
-                        "description": "caps_lock to esc if alone / ctrl if hold down",
+                        "description": "caps_lock to esc if alone / hyper if hold down",
                         "manipulators": [
                             {
                                 "from": {
@@ -133,24 +133,8 @@
                                 "to_if_alone": [{ "key_code": "escape" }],
                                 "to_if_held_down": [
                                     {
-                                        "key_code": "left_control",
-                                        "modifiers": []
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "key_code": "escape",
-                                    "modifiers": {
-                                        "mandatory": ["shift"],
-                                        "optional": ["any"]
-                                    }
-                                },
-                                "to_if_alone": [
-                                    {
-                                        "key_code": "grave_accent_and_tilde",
-                                        "modifiers": ["left_shift"]
+                                        "key_code": "left_shift",
+                                        "modifiers": ["left_command", "left_control", "left_option"]
                                     }
                                 ],
                                 "type": "basic"
@@ -230,10 +214,11 @@
                     },
                     {
                         "description": "~ and $ on the right place",
+                        "enabled": false,
                         "manipulators": [
                             {
                                 "from": {
-                                    "key_code": "escape",
+                                    "key_code": "non_us_backslash",
                                     "modifiers": {
                                         "mandatory": ["right_shift"],
                                         "optional": ["any"]
@@ -248,10 +233,20 @@
                                 "type": "basic"
                             },
                             {
-                                "from": { "key_code": "escape" },
+                                "from": { "key_code": "non_us_backslash" },
                                 "to": [
                                     {
                                         "key_code": "grave_accent_and_tilde",
+                                        "modifiers": []
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": { "key_code": "grave_accent_and_tilde" },
+                                "to": [
+                                    {
+                                        "key_code": "left_control",
                                         "modifiers": []
                                     }
                                 ],
@@ -288,7 +283,7 @@
                         "title": "Change right_shift + left_shift to caps_lock"
                     },
                     {
-                        "description": "caps_lock to esc if alone / ctrl if hold down",
+                        "description": "caps_lock to esc if alone / hyper if hold down",
                         "manipulators": [
                             {
                                 "from": {
@@ -301,8 +296,8 @@
                                 "to_if_alone": [{ "key_code": "escape" }],
                                 "to_if_held_down": [
                                     {
-                                        "key_code": "left_control",
-                                        "modifiers": []
+                                        "key_code": "left_shift",
+                                        "modifiers": ["left_command", "left_control", "left_option"]
                                     }
                                 ],
                                 "type": "basic"
@@ -310,7 +305,6 @@
                         ]
                     },
                     {
-                        "enabled": false,
                         "manipulators": [
                             {
                                 "description": "toggle modes with rigth_option",
@@ -330,11 +324,15 @@
             },
             "fn_function_keys": [
                 {
+                    "from": { "key_code": "f5" },
+                    "to": [{ "key_code": "f1" }]
+                },
+                {
                     "from": { "key_code": "f6" },
-                    "to": [{ "apple_vendor_keyboard_key_code": "dashboard" }]
+                    "to": [{ "apple_vendor_keyboard_key_code": "launchpad" }]
                 }
             ],
-            "name": "extern_keyboard",
+            "name": "extern",
             "selected": true,
             "virtual_hid_keyboard": { "keyboard_type_v2": "iso" }
         }
