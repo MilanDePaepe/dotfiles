@@ -14,6 +14,7 @@ return {
 				require("todo-comments").jump_prev()
 			end, { desc = "Previous todo comment" })
 
+			vim.keymap.set("n", "<leader>tq", "<cmd>TodoQuickFix<CR>", { desc = "Open TodoQuickFix" })
 			-- You can also specify a list of valid jump keywords
 
 			-- vim.keymap.set("n", "]t", function()
