@@ -23,9 +23,10 @@ return {
 			-- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
 			-- vim.cmd.colorscheme("tokyonight-night")
 			-- vim.cmd.colorscheme("retrobox")
-			-- vim.cmd.colorscheme("ashen")
+			vim.cmd.colorscheme("ashen")
 			-- vim.cmd.colorscheme("evergarden")
-			vim.cmd.colorscheme("rose-pine")
+			-- vim.cmd.colorscheme("rose-pine")
+			-- vim.cmd.colorscheme("blackmetalbathory2")
 
 			-- You can configure highlights by doing something like:
 			vim.cmd.hi("Comment gui=none")
