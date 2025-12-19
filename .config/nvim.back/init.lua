@@ -1,0 +1,2 @@
+-- require("milan")
+require("minimal")
