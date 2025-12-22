@@ -78,7 +78,8 @@ ZSH_THEME="amuse"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions)
+plugins=(git)
+
 
 source $ZSH/oh-my-zsh.sh
 
@@ -128,9 +129,13 @@ function y() {
 }
 
 # syntax highlighting terminal
-source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
 
 # export JAVA_HOME=/usr/lib/jvm/java-21-openjdk
 # export PATH=$JAVA_HOME/bin:$PATH
 
-[ -f "/Users/milandepaepe/.ghcup/env" ] && . "/Users/milandepaepe/.ghcup/env" # ghcup-env
+# [ -f "Users/milandepaepe/.ghcup/env" ] && . "/Users/milandepaepe/.ghcup/env" # ghcup-env
+[ -f "/home/milan/.ghcup/env" ] && . "/home/milan/.ghcup/env" # ghcup-env
