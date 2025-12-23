@@ -16,6 +16,7 @@ packages=(
   yazi
   ripgrep
   waybar
+  ghostyy
   neovim
   fastfetch
   zsh-syntax-highlighting
