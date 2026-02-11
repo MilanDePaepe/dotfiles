@@ -1,104 +1,125 @@
-/* ============================= */
-/* Global defaults               */
-/* ============================= */
+/* =========================
+   Global
+   ========================= */
 * {
-  font-family: JetBrainsMono Nerd Font, monospace;
+  font-family: "JetBrains Mono", "Symbols Nerd Font";
   font-size: 12px;
   min-height: 0;
   border: none;
-  box-shadow: none;
 }
 
-/* ============================= */
-/* Waybar container              */
-/* ============================= */
+/* =========================
+   Transparent bar
+   ========================= */
 window#waybar {
-  background: rgba(18, 18, 18, 0.95);   /* almost black */
-  /* border-bottom: 1px solid rgba(120, 120, 120, 0.25); */
-  color: #e5e9f0;
+  background: transparent;
 }
 
-/* ============================= */
-/* Workspaces (dots)             */
-/* ============================= */
+/* =========================
+   Floating containers
+   ========================= */
+
+/* LEFT floating bar */
+.modules-left {
+  background: rgba(20, 20, 20, 0.85);
+  margin: 6px 0 6px 8px;
+  padding: 2px 10px;
+  border-radius: 10px;
+}
+
+/* RIGHT floating bar */
+.modules-right {
+  background: rgba(20, 20, 20, 0.85);
+  margin: 6px 8px 6px 0;
+  padding: 2px 10px;
+  border-radius: 10px;
+}
+
+/* Center stays invisible */
+.modules-center {
+  background: transparent;
+}
+
+/* =========================
+   Workspaces (numbers)
+   ========================= */
 #workspaces {
-  padding-left: 10px;
+  padding: 0 4px;
 }
 
 #workspaces button {
-  padding: 2 3px;               /* less horizontal padding */
-  margin: 0 2px;                /* dots closer together */
-  border-radius: 999px;
+  padding: 0 5px;
   background: transparent;
-  color: rgba(255, 255, 255, 0.35);
-  transition: color 0.2s ease, opacity 0.2s ease;
+  color: #777;
+  font-weight: 500;
+  min-width: 18px;
+}
+
+#workspaces button:hover {
+  color: #bbb;
 }
 
 #workspaces button.active {
-  color: #88c0d0;              /* subtle accent for active workspace */
+  color: #ffffff;
 }
 
 #workspaces button.urgent {
-  color: #d08770;              /* warning color */
+  color: #ff6c6b;
 }
 
-/* ============================= */
-/* Network (only when offline)   */
-/* ============================= */
-#network {
-  padding: 0 10px;
-  color: #d08770;
-  transition: opacity 0.3s ease;
+/* =========================
+   Workspaces (dots)
+   ========================= */
+/* #workspaces { */
+/*   padding: 0 4px; */
+/* } */
+/**/
+/* #workspaces button { */
+/*   padding: 0 6px; */
+/*   background: transparent; */
+/*   color: #777; */
+/* } */
+/**/
+/* #workspaces button:hover { */
+/*   color: #bbb; */
+/* } */
+/**/
+/* #workspaces button.active { */
+/*   color: #ffffff; */
+/* } */
+/**/
+/* #workspaces button.urgent { */
+/*   color: #ff6c6b; */
+/* } */
+/**/
+/* =========================
+   Right-side modules
+   ========================= */
+
+#network,
+#battery,
+#clock {
+  padding: 0 8px;
+  margin: 0 8px;
+  color: #e5e5e5;
 }
 
-#network:not(.disconnected) {
-  padding: 0;
-  margin: 0;
-  opacity: 0;
+/* Network disconnected */
+#network.disconnected {
+  color: #888;
 }
 
-/* ============================= */
-/* Battery                       */
-/* ============================= */
-#battery {
-  padding: 0 10px;
-  color: #e5e9f0;
-}
-
+/* Battery states */
 #battery.warning {
-  color: #ebcb8b;
+  color: #f1c40f;
 }
 
 #battery.critical {
-  color: #bf616a;
+  color: #e06c75;
 }
 
-/* ============================= */
-/* Clock                         */
-/* ============================= */
+/* Clock */
 #clock {
-  padding: 0 14px;
-  color: #eceff4;
-}
-
-/* ============================= */
-/* Tray (if enabled later)       */
-/* ============================= */
-#tray {
-  padding-right: 12px;
-}
-
-/* ============================= */
-/* Tooltip (optional polish)     */
-/* ============================= */
-tooltip {
-  background: rgba(18, 18, 18, 0.97);
-  border: 1px solid rgba(120, 120, 120, 0.35);
-  border-radius: 6px;
-}
-
-tooltip label {
-  color: #eceff4;
-  padding: 6px;
+  font-weight: 500;
 }
 

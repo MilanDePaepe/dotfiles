@@ -1,0 +1,104 @@
+/* ============================= */
+/* Global defaults               */
+/* ============================= */
+* {
+  font-family: JetBrainsMono Nerd Font, monospace;
+  font-size: 12px;
+  min-height: 0;
+  border: none;
+  box-shadow: none;
+}
+
+/* ============================= */
+/* Waybar container              */
+/* ============================= */
+window#waybar {
+  background: rgba(18, 18, 18, 0.95);   /* almost black */
+  /* border-bottom: 1px solid rgba(120, 120, 120, 0.25); */
+  color: #e5e9f0;
+}
+
+/* ============================= */
+/* Workspaces (dots)             */
+/* ============================= */
+#workspaces {
+  padding-left: 10px;
+}
+
+#workspaces button {
+  padding: 2 3px;               /* less horizontal padding */
+  margin: 0 2px;                /* dots closer together */
+  border-radius: 999px;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.35);
+  transition: color 0.2s ease, opacity 0.2s ease;
+}
+
+#workspaces button.active {
+  color: #88c0d0;              /* subtle accent for active workspace */
+}
+
+#workspaces button.urgent {
+  color: #d08770;              /* warning color */
+}
+
+/* ============================= */
+/* Network (only when offline)   */
+/* ============================= */
+#network {
+  padding: 0 10px;
+  color: #d08770;
+  transition: opacity 0.3s ease;
+}
+
+#network:not(.disconnected) {
+  padding: 0;
+  margin: 0;
+  opacity: 0;
+}
+
+/* ============================= */
+/* Battery                       */
+/* ============================= */
+#battery {
+  padding: 0 10px;
+  color: #e5e9f0;
+}
+
+#battery.warning {
+  color: #ebcb8b;
+}
+
+#battery.critical {
+  color: #bf616a;
+}
+
+/* ============================= */
+/* Clock                         */
+/* ============================= */
+#clock {
+  padding: 0 14px;
+  color: #eceff4;
+}
+
+/* ============================= */
+/* Tray (if enabled later)       */
+/* ============================= */
+#tray {
+  padding-right: 12px;
+}
+
+/* ============================= */
+/* Tooltip (optional polish)     */
+/* ============================= */
+tooltip {
+  background: rgba(18, 18, 18, 0.97);
+  border: 1px solid rgba(120, 120, 120, 0.35);
+  border-radius: 6px;
+}
+
+tooltip label {
+  color: #eceff4;
+  padding: 6px;
+}
+

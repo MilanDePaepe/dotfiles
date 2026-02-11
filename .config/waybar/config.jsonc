@@ -19,12 +19,13 @@
   "hyprland/workspaces": {
     "disable-scroll": true,
     "all-outputs": true,
-    "format": "{icon}",
-    "format-icons": {
-      "default": "●",    // normal workspace
-      "active": "⬤",     // bigger dot for active workspace
-      "urgent": "●"
-    },
+    "format": "{name}",
+    // "format": "{icon}",
+    // "format-icons": {
+    //   "default": "●",    // normal workspace
+    //   "active": "⬤",     // bigger dot for active workspace
+    //   "urgent": "●"
+    // },
     "persistent-workspaces": {
       "*": 5
     }

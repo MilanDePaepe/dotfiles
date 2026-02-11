@@ -118,7 +118,9 @@ alias zen="flatpak run app.zen_browser.zen 2>/dev/null &"
 alias intellij="/opt/idea-IU-243.24978.46/bin/idea 2>/dev/null &"
 alias scene-builder="flatpak run com.gluonhq.SceneBuilder 2>/dev/null &"
 
-EDITOR=nvim
+export EDITOR=nvim
+export VISUAL=nvim
+
 function y() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
 	yazi "$@" --cwd-file="$tmp"
