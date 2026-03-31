@@ -1,9 +1,12 @@
 #!/bin/bash
 
-STATE="$(echo "$INFO" | jq -r '.state')"
+STATE=$(osascript -e 'tell application "Music" to if it is running then get player state')
 if [ "$STATE" = "playing" ]; then
-  MEDIA="$(echo "$INFO" | jq -r '.title + " - " + .artist')"
-  sketchybar --set $NAME label="$MEDIA" drawing=on
+  TITLE=$(osascript -e 'tell application "Music" to if it is running and player state is playing then get name of current track')
+  ARTIST=$(osascript -e 'tell application "Music" to if it is running and player state is playing then get artist of current track')
+  sketchybar --set title label="$TITLE" drawing=on
+  sketchybar --set artist label="$ARTIST" drawing=on
 else
-  sketchybar --set $NAME drawing=off
+  sketchybar --set title drawing=off
+  sketchybar --set artist drawing=off
 fi
