@@ -1,7 +1,8 @@
-font-family = JetBrainsMono Nerd Font Mono
-font-size = 10
+# font-family = JetBrainsMono Nerd Font Mono
+font-family = FiraCode Nerd Font
+font-size = 15
 theme = Black Metal
-window-decoration = false
+window-decoration = true
 macos-titlebar-style = native
 confirm-close-surface = false
-background-opacity = 0.8
+background-opacity = 1

@@ -20,7 +20,7 @@ vim.pack.add({
   {
     src = "https://github.com/Saghen/blink.cmp",
     name = "blink-cmp",
-    version = "v1",
+    version = "v1.10.1",
   },
 
   -- Auto pairs (mini.pairs)
@@ -147,10 +147,14 @@ vim.pack.add({
 -- ──────────────────────────────────────────────────────────────────────────────
 
 -- Colorscheme
-vim.cmd.colorscheme("ashen")
+-- vim.cmd.colorscheme("ashen")
+vim.cmd("colorscheme emberforge")
 
 -- blink.cmp
 require("blink.cmp").setup({
+  fuzzy = {
+    implementation = "lua",
+  },
   keymap = { preset = "default" },
   appearance = {
     nerd_font_variant = "mono",
@@ -393,6 +397,7 @@ require("neo-tree").setup({
     use_libuv_file_watcher = true,
   },
   window = {
+    position = "right",
     mappings = {
       ["l"] = "open",
       ["h"] = "close_node",
@@ -473,9 +478,53 @@ require("nvim-treesitter").setup({
 })
 
 -- lualine
+-- Lualine theme for 'ash'
+local c = {
+  black = "#121212",
+  g_0 = "#e5e5e5",
+  g_5 = "#949494",
+  g_7 = "#535353",
+
+  red_flame = "#C53030",
+  red_ember = "#B14242",
+  red_glowing = "#DF6464",
+  orange_glow = "#D87C4A",
+  g_10 = "#1d1d1d",
+}
+
+local ash_lualine = {
+  normal = {
+    a = { fg = c.black, bg = c.red_flame, gui = "bold" }, -- red background
+    b = { fg = c.g_0, bg = c.g_10 },
+    c = { fg = c.g_0, bg = c.black },
+  },
+  insert = {
+    a = { fg = c.black, bg = c.red_glowing, gui = "bold" },
+    b = { fg = c.g_0, bg = c.g_10 },
+    c = { fg = c.g_0, bg = c.black },
+  },
+  visual = {
+    a = { fg = c.black, bg = c.red_ember, gui = "bold" },
+    b = { fg = c.g_0, bg = c.g_10 },
+    c = { fg = c.g_0, bg = c.black },
+  },
+  replace = {
+    a = { fg = c.black, bg = c.red_flame, gui = "bold" },
+    b = { fg = c.g_0, bg = c.g_10 },
+    c = { fg = c.g_0, bg = c.black },
+  },
+  inactive = {
+    a = { fg = c.g_5, bg = c.g_10 },
+    b = { fg = c.g_5, bg = c.g_10 },
+    c = { fg = c.g_5, bg = c.g_10 },
+  },
+}
+
 require("lualine").setup({
   options = {
-    theme = "auto",
+    theme = ash_lualine,
+    component_separators = "|",
+    serction_separators = "",
     globalstatus = true,
     disabled_filetypes = { statusline = { "dashboard", "snacks_dashboard" } },
   },
@@ -522,29 +571,29 @@ require("ibl").setup({
 })
 
 -- Noice
-require("noice").setup({
-  lsp = {
-    override = {
-      ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-      ["vim.lsp.util.stylize_markdown"] = true,
-    },
-  },
-  routes = {
-    {
-      filter = {
-        event = "msg_show",
-        any = { { find = "%d+L, %d+B" }, { find = "; after #%d+" }, { find = "; before #%d+" } },
-      },
-      view = "mini",
-    },
-  },
-  presets = {
-    bottom_search = true,
-    command_palette = true,
-    long_message_to_split = true,
-  },
-})
-
+-- require("noice").setup({
+-- 	lsp = {
+-- 		override = {
+-- 			["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+-- 			["vim.lsp.util.stylize_markdown"] = true,
+-- 		},
+-- 	},
+-- 	routes = {
+-- 		{
+-- 			filter = {
+-- 				event = "msg_show",
+-- 				any = { { find = "%d+L, %d+B" }, { find = "; after #%d+" }, { find = "; before #%d+" } },
+-- 			},
+-- 			view = "mini",
+-- 		},
+-- 	},
+-- 	presets = {
+-- 		bottom_search = true,
+-- 		command_palette = true,
+-- 		long_message_to_split = true,
+-- 	},
+-- })
+--
 -- persistence (session management)
 require("persistence").setup({ dir = vim.fn.stdpath("state") .. "/sessions/" })
 
