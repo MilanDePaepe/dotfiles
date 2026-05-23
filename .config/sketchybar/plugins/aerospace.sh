@@ -1,4 +1,5 @@
 #!/bin/bash
+source "$CONFIG_DIR/colors.sh"
 
 sid="$1"
 
@@ -27,7 +28,7 @@ fi
 #   sketchybar --set $NAME icon="$sid" label.color=0xffffffff icon.color=0xffffffff
 # fi
 if [ "$sid" = "$FOCUSED_WORKSPACE" ]; then
-  sketchybar --set $NAME icon="$sid" icon.color=0xffcba6f7
+  sketchybar --set $NAME icon="$sid" icon.color=$ACCENT_COLOR
 else
   sketchybar --set $NAME icon="$sid" icon.color=0xffffffff
 fi

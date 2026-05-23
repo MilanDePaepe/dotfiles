@@ -15,7 +15,10 @@ PLUGIN_DIR="$CONFIG_DIR/plugins"
 # If you are looking for other colors, see the color picker:
 # https://felixkratz.github.io/SketchyBar/config/tricks#color-picker
 
-sketchybar --bar position=top height=37 blur_radius=0 color=0x00ffffff display=all
+# update borders
+borders active_color=$ACCENT_COLOR inactive_color=0xff494d64 width=8.0 &
+
+sketchybar --bar position=top height=37 blur_radius=0 color=0x00ffffff display=all topmost=on
 
 ##### Changing Defaults #####
 # We now change some default values, which are applied to all further items.
@@ -69,7 +72,7 @@ sketchybar --add item time right \
 # Spacer
 sketchybar --add item spacer_right right \
   --set spacer_right \
-  width=91 \
+  width=85 \
   background.drawing=off \
   label.drawing=off \
   icon.drawing=off
@@ -103,13 +106,13 @@ sketchybar --add item ssd_usage right \
 
 #Bracket for calendar, battery
 sketchybar --add bracket right_side date time \
-  --set right_side background.color=0x5e000000 \
+  --set right_side background.color=$ITEM_BG_COLOR \
   background.drawing=on \
   background.height=28 \
   background.corner_radius=12
 # Bracket for sys_info
 sketchybar --add bracket sys_info cpu_usage ssd_usage battery \
-  --set sys_info background.color=0x5e000000 \
+  --set sys_info background.color=$ITEM_BG_COLOR \
   background.drawing=on \
   background.height=28 \
   background.corner_radius=12
@@ -122,7 +125,7 @@ sketchybar --add item apple left \
   background.drawing=off \
   background.height=28 \
   background.corner_radius=12 \
-  icon.padding_right=0
+  icon.padding_right=-10
 
 sketchybar --add event aerospace_workspace_change
 sketchybar --add event aerospace_monitor_change
@@ -160,16 +163,16 @@ sketchybar --add item front_app left \
   --set front_app icon.drawing=on \
   icon.font="sketchybar-app-font:Regular:16.0" \
   label.font="Hack Nerd Font Mono:Bold:14" \
-  label.color="$ACCENT_COLOR" \
+  \
   script="$PLUGIN_DIR/front_app.sh" \
   background.drawing=on \
-  background.color=0x5e000000 \
+  background.color=$ITEM_BG_COLOR \
   background.height=28 \
   background.corner_radius=12 \
   label.max_chars=15 \
   scroll_texts=on \
   label.scroll_duration=200 \
-  --subscribe front_app front_app_switched
+  --subscribe front_app front_app_switched # label.color="$ACCENT_COLOR" \
 
 spaces=()
 for sid in $(aerospace list-workspaces --all); do
@@ -178,7 +181,7 @@ done
 
 sketchybar --add bracket left_bracket apple "${spaces[@]}" \
   --set left_bracket \
-  background.color=0x5e000000 \
+  background.color=$ITEM_BG_COLOR \
   background.drawing=on \
   background.height=28 \
   background.corner_radius=12
@@ -190,24 +193,24 @@ sketchybar --add item title q \
   icon=":music:" \
   icon.padding_right=10 \
   background.drawing=on \
-  background.color=0x5e000000 \
+  background.color=$ITEM_BG_COLOR \
   background.height=28 \
   background.corner_radius=12 \
   update_freq=1 \
-  label.color="$ACCENT_COLOR" \
+  \
   label.max_chars=15 \
   label.scroll_duration=200 \
   drawing=off \
   scroll_texts=on \
   script="$PLUGIN_DIR/music.sh" \
-  click_script="open -a Music"
+  click_script="open -a Music" # label.color="$ACCENT_COLOR" \
 
 sketchybar --add item artist e \
   --set artist \
   label.font="Hack Nerd Font Mono:Bold:14" \
   background.drawing=on \
-  label.color="$ACCENT_COLOR" \
-  background.color=0x5e000000 \
+  \
+  background.color=$ITEM_BG_COLOR \
   background.height=28 \
   background.corner_radius=12 \
   drawing=off \
@@ -216,6 +219,6 @@ sketchybar --add item artist e \
   label.scroll_duration=50 \
   icon.drawing=off \
   scroll_texts=on \
-  click_script="open -a Music"
+  click_script="open -a Music" # label.color="$ACCENT_COLOR" \
 
 sketchybar --update

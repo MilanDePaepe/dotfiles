@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+choice=$(
+  osascript <<EOF
+choose from list {"blue","green","red","orange","purple","teal","gray","yellow"} \
+with prompt "Choose theme color"
+EOF
+)
+
+[[ "$choice" == "false" ]] && exit 0
+
+theme=$(echo "$choice" | tr -d '{}')
+
+~/.config/sketchybar/theme "$theme"

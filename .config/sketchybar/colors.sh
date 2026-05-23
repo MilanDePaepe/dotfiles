@@ -1,45 +1,33 @@
 #!/bin/bash
 
-#!/bin/bash
-
 export WHITE=0xffffffff
+export ITEM_BG_COLOR=0x9f000000
 
-# -- Teal Scheme --
-# export BAR_COLOR=0xff001f30
-# export ITEM_BG_COLOR=0x5e000000
-# export ACCENT_COLOR=0xff2cf9ed
+COLOR_THEME_FILE="$CONFIG_DIR/.color_theme"
 
-# -- Gray Scheme --
-# export BAR_COLOR=0xff101314
-# export ITEM_BG_COLOR=0xff353c3f
-# export ACCENT_COLOR=0xffffffff
+case "$1" in
+teal | gray | grey | purple | red | blue | green | orange | yellow)
+  COLOR_THEME="$1"
+  echo "$COLOR_THEME" >"$COLOR_THEME_FILE"
+  ;;
+*)
+  if [ -f "$COLOR_THEME_FILE" ]; then
+    COLOR_THEME=$(<"$COLOR_THEME_FILE")
+  else
+    COLOR_THEME=green
+  fi
+  ;;
+esac
 
-# -- Purple Scheme --
-export BAR_COLOR=0xff140c42
-export ITEM_BG_COLOR=0xff2b1c84
-export ACCENT_COLOR=0xffcba6f7
-
-# -- Red Scheme ---
-# export BAR_COLOR=0xff23090e
-# export ITEM_BG_COLOR=0xff591221
-# export ACCENT_COLOR=0xffff2453
-
-# -- Blue Scheme ---
-# export BAR_COLOR=0xff021254
-# export ITEM_BG_COLOR=0xff093aa8
-# export ACCENT_COLOR=0xff15bdf9
-
-# -- Green Scheme --
-# export BAR_COLOR=0xff003315
-# export ITEM_BG_COLOR=0xff008c39
-# export ACCENT_COLOR=0xff1dfca1
-
-# -- Orange Scheme --
-# export BAR_COLOR=0xff381c02
-# export ITEM_BG_COLOR=0xff99440a
-# export ACCENT_COLOR=0xfff97716
-
-# -- Yellow Scheme --
-# export BAR_COLOR=0xff2d2b02
-# export ITEM_BG_COLOR=0xff8e7e0a
-# export ACCENT_COLOR=0xfff7fc17
+case "$COLOR_THEME" in
+teal) ACCENT_COLOR=0xff2cf9ed ;;
+gray | grey) ACCENT_COLOR=0xffffffff ;;
+purple) ACCENT_COLOR=0xffcba6f7 ;;
+red) ACCENT_COLOR=0xffb81c3f ;;
+blue) ACCENT_COLOR=0xff60a5fa ;;
+green) ACCENT_COLOR=0xff1dfca1 ;;
+orange) ACCENT_COLOR=0xffff7b00 ;;
+yellow) ACCENT_COLOR=0xfff7fc17 ;;
+*) ACCENT_COLOR=0xff4ade80 ;;
+esac
+export ACCENT_COLOR

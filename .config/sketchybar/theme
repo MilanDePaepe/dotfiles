@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+echo "$1" >$HOME/.config/sketchybar/.color_theme
+
+# reload sketchybar
+sketchybar --reload
+
