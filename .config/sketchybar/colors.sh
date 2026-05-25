@@ -1,7 +1,7 @@
 #!/bin/bash
 
 export WHITE=0xffffffff
-export ITEM_BG_COLOR=0x9f000000
+export ITEM_BG_COLOR=0x4a181a22
 
 COLOR_THEME_FILE="$CONFIG_DIR/.color_theme"
 

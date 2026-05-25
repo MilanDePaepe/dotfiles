@@ -1,224 +1,33 @@
 #!/bin/bash
 
-# This is a demo config to showcase some of the most important commands.
-# It is meant to be changed and configured, as it is intentionally kept sparse.
-# For a (much) more advanced configuration example see my dotfiles:
-# https://github.com/FelixKratz/dotfiles
-
+# set the colors
 source "$CONFIG_DIR/colors.sh"
 PLUGIN_DIR="$CONFIG_DIR/plugins"
 
-##### Bar Appearance #####
-# Configuring the general appearance of the bar.
-# These are only some of the options available. For all options see:
-# https://felixkratz.github.io/SketchyBar/config/bar
-# If you are looking for other colors, see the color picker:
-# https://felixkratz.github.io/SketchyBar/config/tricks#color-picker
-
 # update borders
-borders active_color=$ACCENT_COLOR inactive_color=0xff494d64 width=8.0 &
+borders active_color=$ACCENT_COLOR inactive_color=0xff494d64 width=6.0 &
 
-sketchybar --bar position=top height=37 blur_radius=0 color=0x00ffffff display=all topmost=on
+sketchybar --bar position=top height=37 blur_radius=0 color=0x1a363537 display=all
 
-##### Changing Defaults #####
-# We now change some default values, which are applied to all further items.
-# For a full list of all available item properties see:
-# https://felixkratz.github.io/SketchyBar/config/items
-
-default=(
-  padding_left=5
-  padding_right=5
-  icon.font="Hack Nerd Font Mono:Bold:17.0"
-  label.font="JetBrains Mono Nerd Font:Bold:14.0"
-  icon.color=$ACCENT_COLOR
-  label.color=$WHITE
-  background.drawing=off
-  background.color=$ITEM_BG_COLOR
-  background.border_color=0xffffffff
-  background.height=24
-  background.corner_radius=5
-  icon.padding_left=8
-  icon.padding_right=8
-  label.padding_left=8
-  label.padding_right=8
-)
-sketchybar --default "${default[@]}"
+source "$CONFIG_DIR/items/default.sh"
 
 # Right Side Items
-# Calendar
-sketchybar --add item date right \
-  --set date \
-  update_freq=3600 \
-  script="$PLUGIN_DIR/date.sh" \
-  icon.drawing=off \
-  label.font="JetBrains Mono:Regular:9" \
-  label.padding_left=6 \
-  width=0 \
-  label.align=center \
-  background.drawing=off \
-  y_offset=6
+source "$CONFIG_DIR/items/time.sh"
 
-sketchybar --add item time right \
-  --set time \
-  update_freq=30 \
-  script="$PLUGIN_DIR/time.sh" \
-  icon.drawing=off \
-  label.font="JetBrains Mono:Bold:13" \
-  label.padding_left=6 \
-  width=0 \
-  label.align=center \
-  background.drawing=off \
-  y_offset=-4
-# Spacer
-sketchybar --add item spacer_right right \
-  --set spacer_right \
-  width=85 \
-  background.drawing=off \
-  label.drawing=off \
-  icon.drawing=off
-# Battery
-sketchybar --add item battery right \
-  --set battery \
-  script="$PLUGIN_DIR/battery.sh" \
-  background.drawing=off \
-  icon.padding_right=4 \
-  update_freq=60
+source "$CONFIG_DIR/items/battery.sh"
 
-# cpu_usage
-sketchybar --add item cpu_usage right \
-  --set cpu_usage \
-  script="$PLUGIN_DIR/cpu_usage.sh" \
-  background.drawing=off \
-  update_freq=10 \
-  icon.padding_right=4 \
-  icon="" \
-  background.corner_radius=12 \
-  icon.font="Hack Nerd Font Mono:Bold:20.0"
-# SSD_usage
-sketchybar --add item ssd_usage right \
-  --set ssd_usage \
-  script="$PLUGIN_DIR/ssd_usage.sh" \
-  background.drawing=off \
-  update_freq=60 \
-  icon="" \
-  icon.padding_right=4 \
-  icon.font="Hack Nerd Font Mono:Bold:20.0"
+source "$CONFIG_DIR/items/cpu.sh"
 
-#Bracket for calendar, battery
-sketchybar --add bracket right_side date time \
-  --set right_side background.color=$ITEM_BG_COLOR \
-  background.drawing=on \
-  background.height=28 \
-  background.corner_radius=12
-# Bracket for sys_info
-sketchybar --add bracket sys_info cpu_usage ssd_usage battery \
-  --set sys_info background.color=$ITEM_BG_COLOR \
-  background.drawing=on \
-  background.height=28 \
-  background.corner_radius=12
+source "$CONFIG_DIR/items/ssd.sh"
 
 # Left Side Items
-sketchybar --add item apple left \
-  --set apple \
-  icon="" \
-  icon.font="Hack Nerd Font Mono:Bold:25.0" \
-  background.drawing=off \
-  background.height=28 \
-  background.corner_radius=12 \
-  icon.padding_right=-10
+source "$CONFIG_DIR/items/apple.sh"
 
-sketchybar --add event aerospace_workspace_change
-sketchybar --add event aerospace_monitor_change
-sketchybar --add event aerospace_focus_changed
+source "$CONFIG_DIR/items/spaces2.sh"
 
-for sid in 1 2 3 4 5 6 7 8 9 10 A S D F G; do
-  sketchybar --add item space.$sid left \
-    \
-    --subscribe space.$sid \
-    aerospace_workspace_change \
-    aerospace_focus_changed \
-    aerospace_monitor_change \
-    --set space.$sid \
-    drawing=on \
-    label.drawing=on \
-    label.font="sketchybar-app-font:Regular:16.0" \
-    background.drawing=on \
-    background.color=0x00ffffff \
-    icon="$sid" \
-    icon.padding_left=0 \
-    label.padding_right=0 \
-    label.padding_left=0 \
-    label.y_offset=-1 \
-    click_script="aerospace workspace $sid" \
-    script="$PLUGIN_DIR/aerospace.sh $sid"
-done
+source "$CONFIG_DIR/items/front_app.sh"
 
-sketchybar --add item icon_refresher left \
-  --set icon_refresher drawing=off \
-  width=0 \
-  script="$PLUGIN_DIR/icon_refresh.sh" \
-  --subscribe icon_refresher aerospace_focus_changed aerospace_workspace_change
-
-sketchybar --add item front_app left \
-  --set front_app icon.drawing=on \
-  icon.font="sketchybar-app-font:Regular:16.0" \
-  label.font="Hack Nerd Font Mono:Bold:14" \
-  \
-  script="$PLUGIN_DIR/front_app.sh" \
-  background.drawing=on \
-  background.color=$ITEM_BG_COLOR \
-  background.height=28 \
-  background.corner_radius=12 \
-  label.max_chars=15 \
-  scroll_texts=on \
-  label.scroll_duration=200 \
-  --subscribe front_app front_app_switched # label.color="$ACCENT_COLOR" \
-
-spaces=()
-for sid in $(aerospace list-workspaces --all); do
-  spaces+=(space.$sid)
-done
-
-sketchybar --add bracket left_bracket apple "${spaces[@]}" \
-  --set left_bracket \
-  background.color=$ITEM_BG_COLOR \
-  background.drawing=on \
-  background.height=28 \
-  background.corner_radius=12
-
-sketchybar --add item title q \
-  --set title \
-  icon.font="sketchybar-app-font:Regular:16.0" \
-  label.font="Hack Nerd Font Mono:Bold:14" \
-  icon=":music:" \
-  icon.padding_right=10 \
-  background.drawing=on \
-  background.color=$ITEM_BG_COLOR \
-  background.height=28 \
-  background.corner_radius=12 \
-  update_freq=1 \
-  \
-  label.max_chars=15 \
-  label.scroll_duration=200 \
-  drawing=off \
-  scroll_texts=on \
-  script="$PLUGIN_DIR/music.sh" \
-  click_script="open -a Music" # label.color="$ACCENT_COLOR" \
-
-sketchybar --add item artist e \
-  --set artist \
-  label.font="Hack Nerd Font Mono:Bold:14" \
-  background.drawing=on \
-  \
-  background.color=$ITEM_BG_COLOR \
-  background.height=28 \
-  background.corner_radius=12 \
-  drawing=off \
-  padding_left=0 \
-  label.max_chars=30 \
-  label.scroll_duration=50 \
-  icon.drawing=off \
-  scroll_texts=on \
-  click_script="open -a Music" # label.color="$ACCENT_COLOR" \
+# Left and right side notch
+source "$CONFIG_DIR/items/music.sh"
 
 sketchybar --update
