@@ -1,33 +1,226 @@
 #!/bin/bash
 
-# set the colors
-source "$CONFIG_DIR/colors.sh"
-PLUGIN_DIR="$CONFIG_DIR/plugins"
+PLUGIN_DIR="$HOME/.config/sketchybar/plugins"
 
-# update borders
-borders active_color=$ACCENT_COLOR inactive_color=0xff494d64 width=6.0 &
+# ═════════════════════════════════════════════
+# Colors
+# ═════════════════════════════════════════════
 
-sketchybar --bar position=top height=37 blur_radius=0 color=0x1a363537 display=all
+BAR_BG=0xdd0d1219
 
-source "$CONFIG_DIR/items/default.sh"
+TEXT=0xffd6deeb
+TEXT_DIM=0xff7f8c98
 
-# Right Side Items
-source "$CONFIG_DIR/items/time.sh"
+ACTIVE=0xff334656
+BORDER=0x557f8c98
 
-source "$CONFIG_DIR/items/battery.sh"
+# ═════════════════════════════════════════════
+# Bar
+# ═════════════════════════════════════════════
 
-source "$CONFIG_DIR/items/cpu.sh"
+sketchybar --bar \
+    height=38 \
+    position=top \
+    sticky=on \
+    color="$BAR_BG" \
+    blur_radius=30 \
+    padding_left=12 \
+    padding_right=12 \
+    margin=0
 
-source "$CONFIG_DIR/items/ssd.sh"
+# ═════════════════════════════════════════════
+# Defaults
+# ═════════════════════════════════════════════
 
-# Left Side Items
-source "$CONFIG_DIR/items/apple.sh"
+sketchybar --default \
+    icon.drawing=off \
+    label.font="SF Pro Display:Medium:13.0" \
+    label.color="$TEXT" \
+    label.padding_left=7 \
+    label.padding_right=7 \
+    background.drawing=off \
+    background.corner_radius=9 \
+    background.height=28
 
-source "$CONFIG_DIR/items/spaces2.sh"
+# ═════════════════════════════════════════════
+# Create items for each physical display
+#
+# SketchyBar:
+#   display 1 = W2438SG
+#   display 2 = Built-in Retina
+#
+# OmniWM:
+#   display:2 = W2438SG
+#   display:1 = Built-in Retina
+# ═════════════════════════════════════════════
 
-source "$CONFIG_DIR/items/front_app.sh"
+for display in 1 2; do
+    # Apple logo (leftmost)
+    sketchybar --add item "display${display}.apple" left
+    sketchybar --set "display${display}.apple" \
+        display="$display" \
+        drawing=on \
+        icon=􀣺 \
+        icon.font="SF Symbols:Regular:16.0" \
+        icon.color="$TEXT" \
+        icon.drawing=on \
+        icon.padding_left=10 \
+        icon.padding_right=10 \
+        label.drawing=off \
+        background.drawing=off
 
-# Left and right side notch
-source "$CONFIG_DIR/items/music.sh"
+    # Separator after Apple logo
+    sketchybar --add item "display${display}.apple_separator" left
+    sketchybar --set "display${display}.apple_separator" \
+        display="$display" \
+        drawing=on \
+        label="│" \
+        label.font="SF Pro Display:Regular:13.0" \
+        label.color="$BORDER" \
+        label.padding_left=9 \
+        label.padding_right=9
+
+    # ─────────────────────────────────────────
+    # Workspaces
+    # ─────────────────────────────────────────
+
+    for workspace in 1 2 3 4 5; do
+
+        sketchybar --add item \
+            "display${display}.workspace.${workspace}" left
+
+        sketchybar --set \
+            "display${display}.workspace.${workspace}" \
+            display="$display" \
+            drawing=off \
+            label="$workspace" \
+            label.font="SF Pro Display:Semibold:13.0" \
+            label.color="$TEXT_DIM" \
+            label.padding_left=10 \
+            label.padding_right=10 \
+            background.drawing=off \
+            background.corner_radius=9 \
+            background.height=28 \
+            click_script="$PLUGIN_DIR/omniwm_workspace.sh $workspace"
+
+    done
+
+    # ─────────────────────────────────────────
+    # Separator
+    # ─────────────────────────────────────────
+
+    sketchybar --add item \
+        "display${display}.workspace_separator" left
+
+    sketchybar --set \
+        "display${display}.workspace_separator" \
+        display="$display" \
+        drawing=off \
+        label="│" \
+        label.font="SF Pro Display:Regular:13.0" \
+        label.color="$BORDER" \
+        label.padding_left=9 \
+        label.padding_right=9
+
+    # ─────────────────────────────────────────
+    # Persistent window items
+    # ─────────────────────────────────────────
+
+    for i in {1..10}; do
+
+        sketchybar --add item \
+            "display${display}.window.${i}" left
+
+        sketchybar --set \
+            "display${display}.window.${i}" \
+            display="$display" \
+            drawing=off \
+            label="" \
+            label.font="SF Pro Display:Medium:12.0" \
+            label.color="$TEXT_DIM" \
+            label.padding_left=9 \
+            label.padding_right=9 \
+            background.drawing=off \
+            background.corner_radius=8 \
+            background.height=26
+
+    done
+
+    # ─────────────────────────────────────────
+    # Right-side items
+    #
+    # These are duplicated per display so
+    # every monitor has its own status area.
+    # ─────────────────────────────────────────
+
+    sketchybar --add item \
+        "display${display}.right_separator" right
+
+    sketchybar --set \
+        "display${display}.right_separator" \
+        display="$display" \
+        drawing=on \
+        label="│" \
+        label.font="SF Pro Display:Regular:13.0" \
+        label.color="$BORDER" \
+        label.padding_left=9 \
+        label.padding_right=9
+
+    sketchybar --add item \
+        "display${display}.wifi" right
+
+    sketchybar --set \
+        "display${display}.wifi" \
+        display="$display" \
+        drawing=on \
+        label.drawing=on \
+        label.font="SF Pro Display:Medium:12.0" \
+        label.color="$TEXT_DIM" \
+        label.padding_left=7 \
+        label.padding_right=7 \
+        update_freq=10 \
+        script="$PLUGIN_DIR/wifi.sh"
+
+    sketchybar --add item \
+        "display${display}.battery" right
+
+    sketchybar --set \
+        "display${display}.battery" \
+        display="$display" \
+        drawing=on \
+        label.font="SF Pro Display:Medium:12.0" \
+        label.color="$TEXT_DIM" \
+        label.padding_left=7 \
+        label.padding_right=7 \
+        update_freq=30 \
+        script="$PLUGIN_DIR/battery.sh"
+
+    sketchybar --add item \
+        "display${display}.clock" right
+
+    sketchybar --set \
+        "display${display}.clock" \
+        display="$display" \
+        drawing=on \
+        label.font="SF Pro Display:Semibold:12.0" \
+        label.color="$TEXT" \
+        label.padding_left=8 \
+        label.padding_right=8 \
+        update_freq=30 \
+        script="$PLUGIN_DIR/clock.sh"
+
+done
+
+# ═════════════════════════════════════════════
+# OmniWM
+# ═════════════════════════════════════════════
+
+sketchybar --add event omniwm_refresh
+
+# Don't accidentally create multiple subscriptions.
+pkill -f "$PLUGIN_DIR/omniwm_watch.sh" 2>/dev/null || true
+pkill -f "omniwmctl watch workspace-bar" 2>/dev/null || true
+
+"$PLUGIN_DIR/omniwm_watch.sh" &
 
 sketchybar --update

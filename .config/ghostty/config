@@ -1,7 +1,8 @@
 # font-family = JetBrainsMono Nerd Font Mono
 font-family = FiraCode Nerd Font
 font-size = 15
-theme = Black Metal
+# theme = Black Metal
+theme = Github Dark Default
 window-decoration = true
 macos-titlebar-style = native
 confirm-close-surface = false

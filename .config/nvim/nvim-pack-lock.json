@@ -13,6 +13,10 @@
       "src": "https://github.com/Saghen/blink.cmp",
       "version": "'v1.10.1'"
     },
+    "carvion": {
+      "rev": "3766b0ef4ac4a77931fb9c4fb170b0b4be2518f5",
+      "src": "https://github.com/zitrocode/carvion.nvim"
+    },
     "catppuccin": {
       "rev": "384f304c8b04664c9e0091fbfb3923c5f97c1bcf",
       "src": "https://github.com/catppuccin/nvim"
@@ -88,6 +92,10 @@
     "mini.pairs": {
       "rev": "b7fde3719340946feb75017ef9d75edebdeb0566",
       "src": "https://github.com/echasnovski/mini.pairs"
+    },
+    "miniharp.nvim": {
+      "rev": "1f4fd1c42d19badbda2484d4fa478fb4d3116504",
+      "src": "https://github.com/vieitesss/miniharp.nvim"
     },
     "neo-tree": {
       "rev": "dffde7aaa99bfe19e61bb6a1446db26af6b2c603",

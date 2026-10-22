@@ -6,7 +6,7 @@
 # fi
 
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH:$HOME/bin/randomBullshittery/scripts:./:/usr/share/derby/
+export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH:$HOME/bin/randomBullshittery/scripts
 
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -15,8 +15,9 @@ export ZSH="$HOME/.oh-my-zsh"
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 #
-ZSH_THEME="amuse"
+# ZSH_THEME="amuse"
 # ZSH_THEME="robbyrussell"
+ZSH_THEME="clean"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -138,13 +139,5 @@ source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # export JAVA_HOME=/usr/lib/jvm/java-21-openjdk
 # export PATH=$JAVA_HOME/bin:$PATH
-
-# [ -f "Users/milandepaepe/.ghcup/env" ] && . "/Users/milandepaepe/.ghcup/env" # ghcup-env
-[ -f "/home/milan/.ghcup/env" ] && . "/home/milan/.ghcup/env" # ghcup-env
-
-
-# Load Angular CLI autocompletion.
-source <(ng completion script)
-export ANDROID_HOME=$HOME/Library/Android/sdk
-export PATH=$PATH:$ANDROID_HOME/platform-tools
-export PATH=$PATH:$ANDROID_HOME/emulator
+export JAVA_HOME=$(/usr/libexec/java_home -v 21)
+export PATH=$JAVA_HOME/bin:$PATH

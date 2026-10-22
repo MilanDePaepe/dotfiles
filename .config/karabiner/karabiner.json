@@ -16,6 +16,45 @@
                     "basic.to_delayed_action_delay_milliseconds": 200,
                     "basic.to_if_alone_timeout_milliseconds": 200,
                     "basic.to_if_held_down_threshold_milliseconds": 200
+                }
+            },
+            "devices": [
+                {
+                    "identifiers": { "is_keyboard": true },
+                    "simple_modifications": [
+                        {
+                            "from": { "key_code": "non_us_backslash" },
+                            "to": [{ "key_code": "grave_accent_and_tilde" }]
+                        }
+                    ]
+                }
+            ],
+            "fn_function_keys": [
+                {
+                    "from": { "key_code": "f5" },
+                    "to": [{ "consumer_key_code": "al_calculator" }]
+                },
+                {
+                    "from": { "key_code": "f6" },
+                    "to": [{ "consumer_key_code": "al_email_reader" }]
+                }
+            ],
+            "name": "aerospace",
+            "selected": true,
+            "simple_modifications": [
+                {
+                    "from": { "key_code": "caps_lock" },
+                    "to": [{ "key_code": "delete_or_backspace" }]
+                }
+            ],
+            "virtual_hid_keyboard": { "keyboard_type_v2": "ansi" }
+        },
+        {
+            "complex_modifications": {
+                "parameters": {
+                    "basic.to_delayed_action_delay_milliseconds": 200,
+                    "basic.to_if_alone_timeout_milliseconds": 200,
+                    "basic.to_if_held_down_threshold_milliseconds": 200
                 },
                 "rules": [
                     {
@@ -33,194 +72,7 @@
                                     }
                                 ],
                                 "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "caps_lock to esc if alone",
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "caps_lock",
-                                    "modifiers": {
-                                        "mandatory": [],
-                                        "optional": ["any"]
-                                    }
-                                },
-                                "to_if_alone": [{ "key_code": "escape" }],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "switch left_option and left_command",
-                        "enabled": false,
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "left_option",
-                                    "modifiers": { "optional": ["any"] }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "left_command",
-                                        "modifiers": []
-                                    }
-                                ],
-                                "type": "basic"
                             },
-                            {
-                                "from": {
-                                    "key_code": "left_command",
-                                    "modifiers": { "optional": ["any"] }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "left_option",
-                                        "modifiers": []
-                                    }
-                                ],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "~ and $ on the right place",
-                        "enabled": false,
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "non_us_backslash",
-                                    "modifiers": {
-                                        "mandatory": ["right_shift"],
-                                        "optional": ["any"]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "grave_accent_and_tilde",
-                                        "modifiers": ["left_shift"]
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "from": { "key_code": "non_us_backslash" },
-                                "to": [
-                                    {
-                                        "key_code": "grave_accent_and_tilde",
-                                        "modifiers": []
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "from": { "key_code": "grave_accent_and_tilde" },
-                                "to": [
-                                    {
-                                        "key_code": "left_control",
-                                        "modifiers": []
-                                    }
-                                ],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "Change right_shift + left_shift to caps_lock",
-                        "enabled": false,
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "left_shift",
-                                    "modifiers": {
-                                        "mandatory": ["right_shift"],
-                                        "optional": ["caps_lock"]
-                                    }
-                                },
-                                "to": [{ "key_code": "caps_lock" }],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "key_code": "right_shift",
-                                    "modifiers": {
-                                        "mandatory": ["left_shift"],
-                                        "optional": ["caps_lock"]
-                                    }
-                                },
-                                "to": [{ "key_code": "caps_lock" }],
-                                "type": "basic"
-                            }
-                        ],
-                        "title": "Change right_shift + left_shift to caps_lock"
-                    },
-                    {
-                        "description": "caps_lock to esc if alone / hyper if hold down",
-                        "enabled": false,
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "caps_lock",
-                                    "modifiers": {
-                                        "mandatory": [],
-                                        "optional": ["any"]
-                                    }
-                                },
-                                "to_if_alone": [{ "key_code": "escape" }],
-                                "to_if_held_down": [
-                                    {
-                                        "key_code": "left_shift",
-                                        "modifiers": ["left_command", "left_control", "left_option"]
-                                    }
-                                ],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "manipulators": [
-                            {
-                                "description": "toggle modes with rigth_option",
-                                "from": {
-                                    "key_code": "right_option",
-                                    "modifiers": {
-                                        "mandatory": ["left_option"],
-                                        "optional": ["any"]
-                                    }
-                                },
-                                "to": [{ "shell_command": "/Users/milandepaepe/dotfiles/.config/karabiner/cycle_profile.sh" }],
-                                "type": "basic"
-                            }
-                        ]
-                    }
-                ]
-            },
-            "fn_function_keys": [
-                {
-                    "from": { "key_code": "f5" },
-                    "to": [{ "key_code": "f1" }]
-                },
-                {
-                    "from": { "key_code": "f6" },
-                    "to": [{ "apple_vendor_keyboard_key_code": "launchpad" }]
-                }
-            ],
-            "name": "build_in_keyboard",
-            "selected": true,
-            "virtual_hid_keyboard": { "keyboard_type_v2": "iso" }
-        },
-        {
-            "complex_modifications": {
-                "parameters": {
-                    "basic.to_delayed_action_delay_milliseconds": 200,
-                    "basic.to_if_alone_timeout_milliseconds": 200,
-                    "basic.to_if_held_down_threshold_milliseconds": 200
-                },
-                "rules": [
-                    {
-                        "description": "New Rule (change left_shift+caps_lock to page_down, right_shift+caps_lock to left_command+mission_control)",
-                        "manipulators": [
                             {
                                 "from": {
                                     "key_code": "right_control",
@@ -228,173 +80,26 @@
                                 },
                                 "to": [
                                     {
-                                        "key_code": "right_command",
-                                        "modifiers": []
-                                    }
-                                ],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "caps_lock to esc",
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "caps_lock",
-                                    "modifiers": {
-                                        "mandatory": [],
-                                        "optional": ["any"]
-                                    }
-                                },
-                                "to": [{ "key_code": "escape" }],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "switch left_option and left_command",
-                        "enabled": false,
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "left_option",
-                                    "modifiers": { "optional": ["any"] }
-                                },
-                                "to": [
-                                    {
                                         "key_code": "left_command",
-                                        "modifiers": []
+                                        "modifiers": ["left_control", "left_option"]
                                     }
                                 ],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "key_code": "left_command",
-                                    "modifiers": { "optional": ["any"] }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "left_option",
-                                        "modifiers": []
-                                    }
-                                ],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "~ and $ on the right place",
-                        "enabled": false,
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "non_us_backslash",
-                                    "modifiers": {
-                                        "mandatory": ["right_shift"],
-                                        "optional": ["any"]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "grave_accent_and_tilde",
-                                        "modifiers": ["left_shift"]
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "from": { "key_code": "non_us_backslash" },
-                                "to": [
-                                    {
-                                        "key_code": "grave_accent_and_tilde",
-                                        "modifiers": []
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "from": { "key_code": "grave_accent_and_tilde" },
-                                "to": [
-                                    {
-                                        "key_code": "left_control",
-                                        "modifiers": []
-                                    }
-                                ],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "Change right_shift + left_shift to caps_lock",
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "left_shift",
-                                    "modifiers": {
-                                        "mandatory": ["right_shift"],
-                                        "optional": ["caps_lock"]
-                                    }
-                                },
-                                "to": [{ "key_code": "caps_lock" }],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "key_code": "right_shift",
-                                    "modifiers": {
-                                        "mandatory": ["left_shift"],
-                                        "optional": ["caps_lock"]
-                                    }
-                                },
-                                "to": [{ "key_code": "caps_lock" }],
-                                "type": "basic"
-                            }
-                        ],
-                        "title": "Change right_shift + left_shift to caps_lock"
-                    },
-                    {
-                        "description": "caps_lock to esc if alone / hyper if hold down",
-                        "enabled": false,
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "caps_lock",
-                                    "modifiers": {
-                                        "mandatory": [],
-                                        "optional": ["any"]
-                                    }
-                                },
-                                "to_if_alone": [{ "key_code": "escape" }],
-                                "to_if_held_down": [
-                                    {
-                                        "key_code": "left_shift",
-                                        "modifiers": ["left_command", "left_control", "left_option"]
-                                    }
-                                ],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "manipulators": [
-                            {
-                                "description": "toggle modes with rigth_option",
-                                "from": {
-                                    "key_code": "right_option",
-                                    "modifiers": {
-                                        "mandatory": ["left_option"],
-                                        "optional": ["any"]
-                                    }
-                                },
-                                "to": [{ "shell_command": "/Users/milandepaepe/dotfiles/.config/karabiner/cycle_profile.sh" }],
                                 "type": "basic"
                             }
                         ]
                     }
                 ]
             },
+            "devices": [
+                {
+                    "identifiers": {
+                        "is_keyboard": true,
+                        "product_id": 2,
+                        "vendor_id": 7847
+                    },
+                    "ignore_vendor_events": true
+                }
+            ],
             "fn_function_keys": [
                 {
                     "from": { "key_code": "f5" },
@@ -405,40 +110,122 @@
                     "to": [{ "apple_vendor_keyboard_key_code": "launchpad" }]
                 }
             ],
-            "name": "extern",
-            "virtual_hid_keyboard": { "keyboard_type_v2": "iso" }
+            "name": "build_in_keyboard (copy)",
+            "virtual_hid_keyboard": { "keyboard_type_v2": "ansi" }
         },
         {
-            "complex_modifications": {
-                "rules": [
-                    {
-                        "description": "Left Option to Shift+F3",
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "left_option",
-                                    "modifiers": { "optional": ["any"] }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "f3",
-                                        "modifiers": ["shift"]
-                                    }
-                                ],
-                                "type": "basic"
-                            }
-                        ]
-                    }
-                ]
-            },
-            "name": "Minecraft",
+            "devices": [
+                {
+                    "identifiers": {
+                        "is_keyboard": true,
+                        "is_pointing_device": true,
+                        "product_id": 12976,
+                        "vendor_id": 10007
+                    },
+                    "ignore": false,
+                    "simple_modifications": [
+                        {
+                            "from": { "pointing_button": "button4" },
+                            "to": [{ "key_code": "f3" }]
+                        },
+                        {
+                            "from": { "pointing_button": "button5" },
+                            "to": [{ "key_code": "f5" }]
+                        }
+                    ]
+                },
+                {
+                    "identifiers": {
+                        "is_keyboard": true,
+                        "is_pointing_device": true,
+                        "product_id": 64108,
+                        "vendor_id": 9639
+                    },
+                    "ignore": false,
+                    "simple_modifications": [
+                        {
+                            "from": { "pointing_button": "button4" },
+                            "to": [{ "key_code": "f3" }]
+                        },
+                        {
+                            "from": { "pointing_button": "button5" },
+                            "to": [{ "key_code": "f5" }]
+                        }
+                    ]
+                },
+                {
+                    "identifiers": {
+                        "is_keyboard": true,
+                        "product_id": 62863,
+                        "vendor_id": 13652
+                    },
+                    "ignore": true,
+                    "simple_modifications": [
+                        {
+                            "from": { "pointing_button": "button4" },
+                            "to": [{ "key_code": "f3" }]
+                        },
+                        {
+                            "from": { "pointing_button": "button5" },
+                            "to": [{ "key_code": "f5" }]
+                        }
+                    ]
+                },
+                {
+                    "identifiers": {
+                        "is_pointing_device": true,
+                        "product_id": 62863,
+                        "vendor_id": 13652
+                    },
+                    "ignore": false,
+                    "simple_modifications": [
+                        {
+                            "from": { "pointing_button": "button4" },
+                            "to": [{ "key_code": "f3" }]
+                        },
+                        {
+                            "from": { "pointing_button": "button5" },
+                            "to": [{ "key_code": "f5" }]
+                        }
+                    ]
+                }
+            ],
+            "name": "minecraft",
             "simple_modifications": [
                 {
                     "from": { "key_code": "caps_lock" },
+                    "to": [{ "key_code": "delete_or_backspace" }]
+                },
+                {
+                    "from": { "key_code": "f1" },
+                    "to": [{ "key_code": "f13" }]
+                },
+                {
+                    "from": { "key_code": "f2" },
+                    "to": [{ "key_code": "f16" }]
+                },
+                {
+                    "from": { "key_code": "f3" },
+                    "to": [{ "key_code": "f17" }]
+                },
+                {
+                    "from": { "key_code": "f4" },
+                    "to": [{ "key_code": "f18" }]
+                },
+                {
+                    "from": { "key_code": "f5" },
+                    "to": [{ "key_code": "f19" }]
+                },
+                {
+                    "from": { "pointing_button": "button4" },
                     "to": [{ "key_code": "f3" }]
+                },
+                {
+                    "from": { "pointing_button": "button5" },
+                    "to": [{ "key_code": "f5" }]
                 }
             ],
-            "virtual_hid_keyboard": { "keyboard_type_v2": "iso" }
+            "virtual_hid_keyboard": { "keyboard_type_v2": "ansi" }
         }
     ]
 }

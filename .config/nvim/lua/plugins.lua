@@ -7,12 +7,11 @@ vim.pack.add({
   -- ──────────────────────────────────────────────
   -- COLORSCHEME
   -- ──────────────────────────────────────────────
-  { src = "https://github.com/folke/tokyonight.nvim",              name = "tokyonight" },
-  { src = "https://github.com/catppuccin/nvim",                    name = "catppuccin" },
   { src = "https://github.com/rebelot/kanagawa.nvim",              name = "kanagawa" },
   { src = "https://github.com/rose-pine/neovim",                   name = "rose-pine" },
   { src = "https://github.com/metalelf0/black-metal-theme-neovim", name = "black-metal" },
   { src = "https://github.com/ficd0/ashen.nvim",                   name = "ashen" },
+  { src = "https://github.com/zitrocode/carvion.nvim",             name = "carvion" },
   -- ──────────────────────────────────────────────
   -- CODING
   -- ──────────────────────────────────────────────
@@ -41,9 +40,6 @@ vim.pack.add({
 
   -- Multi-file search & replace UI
   { src = "https://github.com/MagicDuck/grug-far.nvim",                   name = "grug-far" },
-
-  -- Flash — label-based jump/search
-  { src = "https://github.com/folke/flash.nvim",                          name = "flash" },
 
   -- Keymap popup
   { src = "https://github.com/folke/which-key.nvim",                      name = "which-key" },
@@ -110,9 +106,6 @@ vim.pack.add({
   -- Nui (UI component library — required by Noice & others)
   { src = "https://github.com/MunifTanjim/nui.nvim",                name = "nui" },
 
-  -- Noice — replaces cmdline / messages / popup UI
-  { src = "https://github.com/folke/noice.nvim",                    name = "noice" },
-
   -- Notify — styled notification windows (used by Noice and others)
   { src = "https://github.com/rcarriga/nvim-notify",                name = "nvim-notify" },
 
@@ -138,6 +131,13 @@ vim.pack.add({
 
   -- Markview
   { src = "https://github.com/OXY2DEV/markview.nvim",               name = "markview" },
+
+  -- Miniharp
+  {
+    src = "https://github.com/vieitesss/miniharp.nvim",
+    version = vim.version.range("v*"), -- latest stable release
+    -- version = 'nightly', -- latest changes from main
+  },
 })
 
 -- ──────────────────────────────────────────────────────────────────────────────
@@ -147,8 +147,8 @@ vim.pack.add({
 -- ──────────────────────────────────────────────────────────────────────────────
 
 -- Colorscheme
--- vim.cmd.colorscheme("ashen")
-vim.cmd("colorscheme emberforge")
+-- vim.cmd("colorscheme emberforge")
+vim.cmd("colorscheme carvion")
 
 -- blink.cmp
 require("blink.cmp").setup({
@@ -205,9 +205,6 @@ require("lazydev").setup({
 
 -- grug-far
 -- No setup() required; configured via keymaps (see keymaps.lua)
-
--- flash
-require("flash").setup({})
 
 -- which-key
 require("which-key").setup({
@@ -388,45 +385,45 @@ require("trouble").setup({ use_diagnostic_signs = true })
 require("todo-comments").setup({})
 
 -- neo-tree
-require("neo-tree").setup({
-  sources = { "filesystem", "buffers", "git_status" },
-  open_files_do_not_replace_types = { "terminal", "Trouble", "trouble", "qf", "Outline" },
-  filesystem = {
-    bind_to_cwd = false,
-    follow_current_file = { enabled = true },
-    use_libuv_file_watcher = true,
-  },
-  window = {
-    position = "right",
-    mappings = {
-      ["l"] = "open",
-      ["h"] = "close_node",
-      ["<space>"] = "none",
-      ["Y"] = {
-        function(state)
-          local node = state.tree:get_node()
-          local path = node:get_id()
-          vim.fn.setreg("+", path, "c")
-        end,
-        desc = "Copy Path to Clipboard",
-      },
-    },
-  },
-  default_component_configs = {
-    indent = {
-      with_expanders = true,
-      expander_collapsed = "",
-      expander_expanded = "",
-      expander_highlight = "NeoTreeExpander",
-    },
-    git_status = {
-      symbols = {
-        unstaged = "󰄱",
-        staged = "󰱒",
-      },
-    },
-  },
-})
+-- require("neo-tree").setup({
+--   sources = { "filesystem", "buffers", "git_status" },
+--   open_files_do_not_replace_types = { "terminal", "Trouble", "trouble", "qf", "Outline" },
+--   filesystem = {
+--     bind_to_cwd = false,
+--     follow_current_file = { enabled = true },
+--     use_libuv_file_watcher = true,
+--   },
+--   window = {
+--     position = "left",
+--     mappings = {
+--       ["l"] = "open",
+--       ["h"] = "close_node",
+--       ["<space>"] = "none",
+--       ["Y"] = {
+--         function(state)
+--           local node = state.tree:get_node()
+--           local path = node:get_id()
+--           vim.fn.setreg("+", path, "c")
+--         end,
+--         desc = "Copy Path to Clipboard",
+--       },
+--     },
+--   },
+--   default_component_configs = {
+--     indent = {
+--       with_expanders = true,
+--       expander_collapsed = "",
+--       expander_expanded = "",
+--       expander_highlight = "NeoTreeExpander",
+--     },
+--     git_status = {
+--       symbols = {
+--         unstaged = "󰄱",
+--         staged = "󰱒",
+--       },
+--     },
+--   },
+-- })
 
 -- conform (formatting)
 require("conform").setup({
@@ -522,7 +519,7 @@ local ash_lualine = {
 
 require("lualine").setup({
   options = {
-    theme = ash_lualine,
+    theme = "auto",
     component_separators = "|",
     serction_separators = "",
     globalstatus = true,
@@ -570,30 +567,6 @@ require("ibl").setup({
   },
 })
 
--- Noice
--- require("noice").setup({
--- 	lsp = {
--- 		override = {
--- 			["vim.lsp.util.convert_input_to_markdown_lines"] = true,
--- 			["vim.lsp.util.stylize_markdown"] = true,
--- 		},
--- 	},
--- 	routes = {
--- 		{
--- 			filter = {
--- 				event = "msg_show",
--- 				any = { { find = "%d+L, %d+B" }, { find = "; after #%d+" }, { find = "; before #%d+" } },
--- 			},
--- 			view = "mini",
--- 		},
--- 	},
--- 	presets = {
--- 		bottom_search = true,
--- 		command_palette = true,
--- 		long_message_to_split = true,
--- 	},
--- })
---
 -- persistence (session management)
 require("persistence").setup({ dir = vim.fn.stdpath("state") .. "/sessions/" })
 
@@ -602,3 +575,14 @@ require("flutter-tools").setup({})
 
 -- markview
 require("markview").setup({})
+
+require("miniharp").setup({
+  autoload = true,         -- load marks for this cwd on startup (default: true)
+  autosave = true,         -- save marks for this cwd on exit (default: true)
+  show_on_autoload = false, -- show popup list after a successful autoload (default: false)
+  ui = {
+    position = "top-right", -- 'center' | 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right'
+    show_hints = true,     -- show close hints in the floating list (default: true)
+    enter = false,         -- enter the floating window when it opens (default: true)
+  },
+})
